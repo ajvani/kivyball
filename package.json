@@ -1,0 +1,20 @@
+{
+  "name": "kivyball",
+  "version": "1.0.0",
+  "description": "Wanted to practice my python/kivy skills. Made a simple basketball game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajvani/kivyball.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajvani/kivyball/issues"
+  },
+  "homepage": "https://github.com/ajvani/kivyball#readme"
+}
