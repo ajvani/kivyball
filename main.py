@@ -14,7 +14,7 @@ class Ball(Widget):
 	velocity = ReferenceListProperty(velocity_x, velocity_y)
 	score = NumericProperty(0)
 	def move(self): 
-		self.velocity = Vector(self.velocity_x, self.velocity_y - 0.125)
+		self.velocity = Vector(self.velocity_x, self.velocity_y - 0.22)
 		self.pos = Vector(*self.velocity) + self.pos
 
 
@@ -23,7 +23,7 @@ class BackBoard(Widget):
 		if self.collide_widget(ball): 
 			vx, vy = ball.velocity
 			bounced_vel = Vector(-1 * vx, vy) 
-			ball.velocity = bounced_vel.x, bounced_vel.y
+			ball.velocity = bounced_vel.x, bounced_vel.y - 0.05
 
 class Net(Widget): 
 	def ball_bounce(self, ball): 
@@ -63,11 +63,16 @@ class KivyBallGame(Widget):
 		#Bounce off backboard
 		self.board.ball_bounce(self.ball)
 
+		#Fixing error - can't score from underneath anymore
 		#Check for score
 		if (self.ball.center_y > lower_net_bound) and (self.ball.center_y < upper_net_bound): 
 			if (self.ball.center_x > left_net_bound) and (self.ball.center_x < right_net_bound): 
+				var = False
+				if self.ball.velocity_y < 0: 
+					var = True 
 				self.reset()
-				self.ball.score += 1
+				if var: 
+					self.ball.score += 1
 
 		#Reset ball 
 		if (self.ball.y < 0) or (self.ball.y > self.height)\
