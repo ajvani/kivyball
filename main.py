@@ -37,6 +37,11 @@ class KivyBallGame(Widget):
 	board=ObjectProperty(None)
 	basket=ObjectProperty(None)
 
+	def ball_in_start(self):
+		if (self.ball.center_x != self.width / 8) or (self.ball.center_y != self.height/8):
+			return False
+		return True
+
 	def reset(self, score=False): 
 		self.shoot_ball(vel=(0,0))
 		self.ball.center_x = self.width / 8
@@ -47,13 +52,12 @@ class KivyBallGame(Widget):
 				
 	def update(self, dt):
 		#ball should only move if its not in rest position
-		if (self.ball.center_x != self.width / 8) or (self.ball.center_y != self.height / 8):
+		if not self.ball_in_start():
 			self.ball.move()
 		#Bounce off rim
-		net_width = self.width / 5
-		net_x = self.width * 3 / 4
-		left_net_bound = (net_width / 10) + net_x 
-		right_net_bound = (net_width * 9 / 10) + net_x 
+		self.basket.x = self.width * 3 / 4
+		left_net_bound = (self.basket.width / 10) + self.basket.x 
+		right_net_bound = (self.basket.width * 9 / 10) + self.basket.x 
 		lower_net_bound = self.height * 9 / 16
 		upper_net_bound = (self.height / 3 ) + (self.height / 4)
 		if self.ball.center_y > lower_net_bound: 
@@ -80,6 +84,8 @@ class KivyBallGame(Widget):
 				self.reset()
 
 	def on_touch_down(self, touch): 
+		if not self.ball_in_start(): 
+			return False
 		if self.collide_point(*touch.pos): 
 			touch.grab(self)
 			return True

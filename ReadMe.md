@@ -8,13 +8,13 @@ Wanted to practice my python/kivy skills. Made a simple basketball game.
 
 #Notes
 - Still has a few bugs in place
-- Looks best in a square window
+- Works best in a square window
 
 #Upcoming
 - Make ball movement more realistic (Bounces/shooting)
 - Add a guideline to show where you're shooting
 
 ##Known Bugs to fix
-- You can change the ball's movement path while it's already moving
+- You can change the ball's movement path while it's already moving (FIXED)
 - Bouncing off the rim is a little funky
-- If the ball is shot right under the backboard it actually bounces back to starting position
+- If the ball is shot right under the backboard it actually bounces back to starting position (FIXED)
